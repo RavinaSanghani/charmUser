@@ -24,8 +24,6 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
     private EditText et_mobile, et_password;
     private String str_mobile, str_password,str_user_type;
 
-    private Context  context;
-    private ProgressBar progressBar;
     private DialogForgotPassword forgotPasswordDialog;
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
@@ -37,9 +35,6 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
     }
 
     private void init() {
-        context=this;
-
-        progressBar = findViewById(R.id.progressBar);
 
         et_mobile = findViewById(R.id.et_mobile);
         et_password = findViewById(R.id.et_password);
@@ -93,8 +88,8 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
         jsonObject.addProperty(Constants.KEY_API_USER_TYPE, str_user_type);
         Utility.printLog(TAG,"loginEmployee:jsonObject:"+jsonObject);
 
-        if (Utility.isConnectedToInternet(context)){
-            showProgressBar();
+        if (Utility.isConnectedToInternet(LoginActivity.this)){
+            Utility.progressBarDialogShow(LoginActivity.this);
             ApiCall.login(LoginActivity.this,jsonObject);
         }else {
             Utility.showDialog(LoginActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
@@ -127,14 +122,5 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
         }
         return true;
     }
-
-    public void showProgressBar() {
-        progressBar.setVisibility(android.view.View.VISIBLE);
-    }
-
-    public void hideProgressBar() {
-        progressBar.setVisibility(android.view.View.GONE);
-    }
-
 
 }

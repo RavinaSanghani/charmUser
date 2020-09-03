@@ -43,7 +43,7 @@ public class DialogForgotPassword extends android.app.Dialog {
 
                 if (validation()){
                     if (Utility.isConnectedToInternet(activity)){
-                        ((LoginActivity)activity).showProgressBar();
+                        Utility.progressBarDialogShow(activity);
                         ApiCall.resetEmployeePassword(activity,jsonObject);
                     }else {
                         Utility.showDialog(activity,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);

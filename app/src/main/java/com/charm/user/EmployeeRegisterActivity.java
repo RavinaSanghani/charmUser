@@ -27,7 +27,6 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
     private int[] img_women_list = {R.drawable.women_1, R.drawable.women_2, R.drawable.women_3, R.drawable.women_4, R.drawable.women_5};
     private int[] img_man_list = {R.drawable.man_1, R.drawable.man_2, R.drawable.man_3, R.drawable.man_4, R.drawable.man_5, R.drawable.man_6};
     private ProfileDialogLayout profileLayout;
-    private ProgressBar progressBar;
     private boolean isMan = false;
 
     @Override
@@ -47,8 +46,6 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         et_password = findViewById(R.id.et_password);
         et_password_verification = findViewById(R.id.et_password_verification);
         et_saloon_code = findViewById(R.id.et_saloon_code);
-        progressBar = findViewById(R.id.progressBar);
-
 
         btn_register = findViewById(R.id.btn_register);
 
@@ -226,7 +223,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         Utility.printLog(TAG, "verificationCode:jsonObject:" + jsonObject);
 
         if (Utility.isConnectedToInternet(EmployeeRegisterActivity.this)) {
-            showProgressBar();
+            Utility.progressBarDialogShow(EmployeeRegisterActivity.this);
             ApiCall.verificationCode(EmployeeRegisterActivity.this, jsonObject);
         } else {
             Utility.showDialog(EmployeeRegisterActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
@@ -251,20 +248,11 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         Utility.printLog(TAG, "registerEmployee:jsonObject:" + jsonObject);
 
         if (Utility.isConnectedToInternet(EmployeeRegisterActivity.this)) {
-            showProgressBar();
+            Utility.progressBarDialogShow(EmployeeRegisterActivity.this);
             ApiCall.register(EmployeeRegisterActivity.this, jsonObject);
         } else {
             Utility.showDialog(EmployeeRegisterActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
         }
 
     }
-
-    public void showProgressBar() {
-        progressBar.setVisibility(android.view.View.VISIBLE);
-    }
-
-    public void hideProgressBar() {
-        progressBar.setVisibility(android.view.View.GONE);
-    }
-
 }

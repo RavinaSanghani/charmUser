@@ -5,21 +5,12 @@ import android.os.Build;
 import android.widget.Toast;
 
 import com.charm.user.Constants;
-import com.charm.user.DialogForgotPassword;
-import com.charm.user.DialogProgressBar;
 import com.charm.user.DialogVerificationCode;
-import com.charm.user.EmployeeRegisterActivity;
-import com.charm.user.HomeActivity;
 import com.charm.user.LoginActivity;
 import com.charm.user.MainActivity;
-import com.charm.user.OwnerRegisterActivity;
 import com.charm.user.PrefManager;
-import com.charm.user.RegistrationStepsActivity;
-import com.charm.user.SplashActivity;
 import com.charm.user.Utility;
 import com.charm.user.responseModel.EmployeeLoginResponse;
-import com.charm.user.responseModel.EmployeeLogoutResponse;
-import com.charm.user.responseModel.RegisterEmployeeResponse;
 import com.charm.user.responseModel.ResetEmployeePasswordResponse;
 import com.charm.user.responseModel.VerificationCodeResponse;
 import com.charm.user.responseModel.EmployeeStatusResponse;
@@ -60,13 +51,12 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                //((SplashActivity) activity).hideProgressBar();
-                ((SplashActivity) activity).dialogProgressBarDiamiss();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<EmployeeStatusResponse> call, @NotNull Throwable t) {
-                ((SplashActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "checkUser:onFailure:Error:" + t.getMessage());
             }
         });
@@ -93,12 +83,12 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                ((EmployeeRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<VerificationCodeResponse> call, @NotNull Throwable t) {
-                ((EmployeeRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "verificationCode:onFailure:Error:" + t.getMessage());
             }
         });
@@ -125,12 +115,12 @@ public class ApiCall {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
 
-                ((EmployeeRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<RegisterOwnerResponse> call, @NotNull Throwable t) {
-                ((EmployeeRegisterActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "register:onFailure:Error:" + t.getMessage());
             }
         });
@@ -156,12 +146,12 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                ((LoginActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<ResetEmployeePasswordResponse> call, @NotNull Throwable t) {
-                ((LoginActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "resetEmployeePassword:onFailure:Error:" + t.getMessage());
             }
         });
@@ -194,45 +184,13 @@ public class ApiCall {
                 } else {
                     Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
                 }
-                ((LoginActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<EmployeeLoginResponse> call, @NotNull Throwable t) {
-                ((LoginActivity) activity).hideProgressBar();
+                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "login:onFailure:Error:" + t.getMessage());
-            }
-        });
-    }
-
-    public static void employeeLogout(final Activity activity, JsonObject jsonObject) {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<EmployeeLogoutResponse> employeeLogoutCall = apiInterface.employeeLogout(jsonObject);
-        employeeLogoutCall.enqueue(new Callback<EmployeeLogoutResponse>() {
-            @Override
-            public void onResponse(@NotNull Call<EmployeeLogoutResponse> call, @NotNull Response<EmployeeLogoutResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        Utility.printLog(TAG, "employeeLogout:onResponse:" + response.body());
-                        if (response.body().getCode().equals("100")) {
-                            Utility.startActivity(activity, HomeActivity.class, false);
-                        } else {
-                            if (response.body().getCode().equals("1014")) {
-                                Utility.startActivity(activity, HomeActivity.class, false);
-                            }
-                        }
-                    }
-                } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
-                }
-                ((RegistrationStepsActivity) activity).hideProgressBar();
-
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<EmployeeLogoutResponse> call, @NotNull Throwable t) {
-                ((RegistrationStepsActivity) activity).hideProgressBar();
-                Utility.printLog(TAG, "employeeLogout:onFailure:Error:" + t.getMessage());
             }
         });
     }

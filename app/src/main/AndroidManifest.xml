@@ -16,8 +16,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity android:name="com.charm.user.MainActivity"/>
-        <activity android:name="com.charm.user.WebViewActivity"/>
-        <activity android:name="com.charm.user.RegistrationStepsActivity" />
         <activity
             android:name="com.charm.user.DialogForgotPassword"
             tools:ignore="Instantiatable" />
@@ -28,11 +26,6 @@
             android:name="com.charm.user.EmployeeRegisterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.charm.user.OwnerRegisterActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.charm.user.HomeActivity" />
         <activity android:name="com.charm.user.SplashActivity">
 
             <intent-filter>

@@ -1,7 +1,6 @@
 package com.charm.user.retrofit;
 
 import com.charm.user.responseModel.EmployeeLoginResponse;
-import com.charm.user.responseModel.EmployeeLogoutResponse;
 import com.charm.user.responseModel.ResetEmployeePasswordResponse;
 import com.charm.user.responseModel.EmployeeStatusResponse;
 import com.charm.user.responseModel.RegisterOwnerResponse;
@@ -30,8 +29,5 @@ public interface ApiInterface {
 
     @POST("login")
     Call<EmployeeLoginResponse> login(@Body JsonObject jsonObject);
-
-    @POST("employeelogout")
-    Call<EmployeeLogoutResponse> employeeLogout(@Body JsonObject jsonObject);
 
 }
