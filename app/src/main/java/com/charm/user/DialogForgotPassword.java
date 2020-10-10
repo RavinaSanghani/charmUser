@@ -1,8 +1,10 @@
 package com.charm.user;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -18,8 +20,9 @@ public class DialogForgotPassword extends android.app.Dialog {
     private String str_mobile;
     private EditText et_mobile;
     private Activity activity;
-    public DialogForgotPassword(@androidx.annotation.NonNull Activity activity) {
-        super(activity);
+
+    public DialogForgotPassword(@NonNull Context context,Activity activity, int themeResId) {
+        super(context, themeResId);
         this.activity=activity;
     }
 
@@ -44,7 +47,7 @@ public class DialogForgotPassword extends android.app.Dialog {
                 if (validation()){
                     if (Utility.isConnectedToInternet(activity)){
                         Utility.progressBarDialogShow(activity);
-                        ApiCall.resetEmployeePassword(activity,jsonObject);
+                        ApiCall.resetPassword(activity,jsonObject);
                     }else {
                         Utility.showDialog(activity,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
                     }

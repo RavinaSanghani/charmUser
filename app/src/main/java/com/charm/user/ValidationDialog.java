@@ -32,12 +32,12 @@ public class ValidationDialog {
     public void validationDialog() {
         TextView title_text = new TextView(context);
         title_text.setText(title);
-        title_text.setPadding(10, 10, 10, 10);
+        title_text.setPadding(10, 50, 10, 10);
         title_text.setGravity(Gravity.CENTER);
         title_text.setTextColor(android.graphics.Color.BLACK);
         title_text.setTextSize(23);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.DialogRounded);
         builder.setCustomTitle(title_text);
         builder.setMessage(msg);
         builder.setCancelable(false);

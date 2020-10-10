@@ -3,7 +3,7 @@ package com.charm.user.responseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResetEmployeePasswordResponse {
+public class ResetPasswordResponse {
 
     @SerializedName("code")
     @Expose

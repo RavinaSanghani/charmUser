@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".EmployeeRegisterActivity">
-
-    <ScrollView
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".EmployeeRegisterActivity">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/rl2"
+                android:id="@+id/rl_profile_icon"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginBottom="@dimen/_10sdp">
 
                 <ImageView
                     android:id="@+id/img_icon"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/icon_women_white"
                     tools:ignore="ContentDescription" />
 
@@ -48,11 +45,12 @@
                     android:layout_width="@dimen/_12sdp"
                     android:layout_height="@dimen/_12sdp"
                     android:visibility="gone"
-                    android:layout_centerHorizontal="true"
                     android:layout_alignRight="@id/img_employee_profile"
+                    android:layout_alignEnd="@id/img_employee_profile"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:src="@drawable/close"
-                    tools:ignore="ContentDescription"
-                    android:layout_alignEnd="@id/img_employee_profile" />
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/txt_icon"
@@ -104,17 +102,15 @@
                 android:background="@color/themeSepratorLightColour" />
 
             <RelativeLayout
-                android:id="@+id/rl3"
+                android:id="@+id/rl_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_20sdp">
 
                 <ImageView
                     android:id="@+id/img_name"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/_3sdp"
@@ -126,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_name"
                     android:layout_toRightOf="@id/img_name"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/name"
                     app:hintTextColor="@color/themeTextColor"
                     tools:targetApi="lollipop">
@@ -135,7 +131,7 @@
                         android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="start|center_vertical"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:paddingBottom="@dimen/space_text_tiny"
@@ -150,16 +146,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl4"
+                android:id="@+id/rl_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_height="@dimen/_50sdp">
 
                 <ImageView
                     android:id="@+id/img_email"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/_3sdp"
@@ -171,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_email"
                     android:layout_toRightOf="@id/img_email"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/email"
                     app:hintTextColor="@color/themeTextColor"
                     tools:targetApi="lollipop">
@@ -180,7 +174,7 @@
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="start|center_vertical"
                         android:importantForAutofill="no"
                         android:inputType="textEmailAddress"
                         android:paddingBottom="@dimen/space_text_tiny"
@@ -195,16 +189,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl5"
+                android:id="@+id/rl_email_verification"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_height="@dimen/_50sdp">
 
                 <ImageView
                     android:id="@+id/img_email_verification"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/_3sdp"
@@ -216,7 +208,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_email_verification"
                     android:layout_toRightOf="@id/img_email_verification"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/email_verification"
                     app:hintTextColor="@color/themeTextColor"
                     tools:targetApi="lollipop">
@@ -225,7 +217,7 @@
                         android:id="@+id/et_email_verification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="start|center_vertical"
                         android:importantForAutofill="no"
                         android:inputType="textEmailAddress"
                         android:paddingBottom="@dimen/space_text_tiny"
@@ -240,67 +232,66 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl6"
+            android:id="@+id/rl_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp">
+
+            <ImageView
+                android:id="@+id/img_phone"
+                android:layout_width="@dimen/icon_employee_width"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/icon_phone_white"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_toEndOf="@+id/img_phone"
+                android:layout_toRightOf="@+id/img_phone"
+                android:gravity="start|center_vertical"
+                android:hint="@string/mobile"
+                app:hintTextColor="@color/themeTextColor"
+                tools:targetApi="lollipop">
 
-                <ImageView
-                    android:id="@+id/img_mobile"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:padding="@dimen/_3sdp"
-                    android:src="@drawable/icon_phone_white"
-                    tools:ignore="ContentDescription" />
-
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/et_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/img_mobile"
-                    android:layout_toRightOf="@id/img_mobile"
-                    android:gravity="start"
-                    android:hint="@string/mobile"
-                    app:hintTextColor="@color/themeTextColor"
-                    tools:targetApi="lollipop">
+                    android:paddingBottom="@dimen/space_text_tiny"
+                    android:theme="@style/EditTextTheme"
+                    android:gravity="start|center_vertical"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:textColor="@color/themeTextColor"
+                    android:textColorHighlight="@color/themeTextColor"
+                    android:textSize="@dimen/_14ssp"
+                    android:singleLine="true"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="lollipop" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/et_mobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:importantForAutofill="no"
-                        android:inputType="number"
-                        android:paddingBottom="@dimen/space_text_tiny"
-                        android:singleLine="true"
-                        android:textColor="@color/themeTextColor"
-                        android:textSize="@dimen/_14sdp"
-                        android:theme="@style/EditTextTheme"
-                        tools:ignore="LabelFor"
-                        tools:targetApi="lollipop" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
+        </RelativeLayout>
 
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_7sdp"
+                android:paddingTop="-5dp"
                 android:background="@color/themeSepratorDarkColour" />
 
             <RelativeLayout
-                android:id="@+id/rl7"
+                android:id="@+id/rl_nick_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_20sdp">
 
                 <ImageView
                     android:id="@+id/img_nick_name"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/_3sdp"
@@ -312,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_nick_name"
                     android:layout_toRightOf="@id/img_nick_name"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/nick_name"
                     app:hintTextColor="@color/themeTextColor"
                     tools:targetApi="lollipop">
@@ -321,7 +312,7 @@
                         android:id="@+id/et_nick_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="start|center_vertical"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:paddingBottom="@dimen/space_text_tiny"
@@ -336,16 +327,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl8"
+                android:id="@+id/rl_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_height="@dimen/_50sdp">
 
                 <ImageView
                     android:id="@+id/img_password"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/_3sdp"
@@ -357,7 +346,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_password"
                     android:layout_toRightOf="@id/img_password"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/password"
                     app:hintTextColor="@color/themeTextColor"
                     tools:targetApi="lollipop">
@@ -366,7 +355,7 @@
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="start|center_vertical"
                         android:importantForAutofill="no"
                         android:inputType="textPassword"
                         android:paddingBottom="@dimen/space_text_tiny"
@@ -381,16 +370,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl9"
+                android:id="@+id/rl_password_verification"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_height="@dimen/_50sdp">
 
                 <ImageView
                     android:id="@+id/img_password_verification"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/_3sdp"
@@ -402,7 +389,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_password_verification"
                     android:layout_toRightOf="@id/img_password_verification"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/password_verification"
                     app:hintTextColor="@color/themeTextColor"
                     tools:targetApi="lollipop">
@@ -411,7 +398,7 @@
                         android:id="@+id/et_password_verification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="start|center_vertical"
                         android:importantForAutofill="no"
                         android:inputType="textPassword"
                         android:paddingBottom="@dimen/space_text_tiny"
@@ -429,19 +416,19 @@
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_7sdp"
+                android:paddingTop="-5dp"
                 android:background="@color/themeSepratorDarkColour" />
 
             <RelativeLayout
-                android:id="@+id/rl10"
+                android:id="@+id/rl_saloon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp">
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_20sdp">
 
                 <ImageView
                     android:id="@+id/img_saloon_code"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/icon_employee_width"
+                    android:layout_height="@dimen/icon_employee_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/_3sdp"
@@ -453,7 +440,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_saloon_code"
                     android:layout_toRightOf="@id/img_saloon_code"
-                    android:gravity="start"
+                    android:gravity="start|center_vertical"
                     android:hint="@string/saloon_code"
                     app:hintTextColor="@color/themeTextColor"
                     tools:targetApi="lollipop">
@@ -462,7 +449,7 @@
                         android:id="@+id/et_saloon_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="start|center_vertical"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:paddingBottom="@dimen/space_text_tiny"
@@ -490,4 +477,4 @@
 
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+

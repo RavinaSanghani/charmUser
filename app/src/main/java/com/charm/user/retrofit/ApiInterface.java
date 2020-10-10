@@ -1,7 +1,7 @@
 package com.charm.user.retrofit;
 
 import com.charm.user.responseModel.EmployeeLoginResponse;
-import com.charm.user.responseModel.ResetEmployeePasswordResponse;
+import com.charm.user.responseModel.ResetPasswordResponse;
 import com.charm.user.responseModel.EmployeeStatusResponse;
 import com.charm.user.responseModel.RegisterOwnerResponse;
 import com.charm.user.responseModel.VerificationCodeResponse;
@@ -24,8 +24,8 @@ public interface ApiInterface {
     @POST("register")
     Call<RegisterOwnerResponse> register(@Body JsonObject jsonObject);
 
-    @POST("resetemployeepassword")
-    Call<ResetEmployeePasswordResponse> resetEmployeePassword(@Body JsonObject jsonObject);
+    @POST("resetpassword")
+    Call<ResetPasswordResponse> resetPassword(@Body JsonObject jsonObject);
 
     @POST("login")
     Call<EmployeeLoginResponse> login(@Body JsonObject jsonObject);

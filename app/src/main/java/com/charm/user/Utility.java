@@ -67,7 +67,7 @@ public class Utility {
         title_text.setTextColor(android.graphics.Color.BLACK);
         title_text.setTextSize(23);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogRounded);
         builder.setCustomTitle(title_text);
         builder.setMessage(message);
         builder.setCancelable(false);

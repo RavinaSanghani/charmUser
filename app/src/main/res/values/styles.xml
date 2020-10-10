@@ -10,4 +10,15 @@
         <item name="colorControlActivated">@color/themeTextSelectedTinyColor</item>
         <item name="colorControlHighlight">@color/themeTextSelectedTinyColor</item>
     </style>
+    <style name="DialogRounded" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_rounded_background</item>
+    </style>
+
+    <style name="DialogAnimation" >
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
 </resources>

@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private WebView webView;
-
     private PrefManager prefManager;
 
     @Override
@@ -26,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         prefManager = new PrefManager(MainActivity.this);
 
-        webView = findViewById(R.id.webView);
+        WebView webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
 
         String url = Constants.BASE_URL_WEB_VIEW + "?app=Charm&upg=open&lt=" + prefManager.getString(PrefManager.KEY_LOGIN_TOKEN, "");

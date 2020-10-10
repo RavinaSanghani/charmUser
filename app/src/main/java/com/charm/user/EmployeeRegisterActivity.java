@@ -3,14 +3,26 @@ package com.charm.user;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.util.Linkify;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.charm.user.retrofit.ApiCall;
 import com.google.gson.JsonObject;
@@ -23,11 +35,12 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
     private Button btn_register;
     private TextView txt_icon;
     private EditText et_name, et_email, et_email_verification, et_mobile, et_nick_name, et_password, et_password_verification, et_saloon_code;
-    private String str_select_icon, str_name, str_email, str_email_verification, str_mobile, str_nick_name, str_password, str_password_verification, str_saloon_code;
+    private String str_select_icon = "", str_name, str_email, str_email_verification, str_mobile, str_nick_name, str_password, str_password_verification, str_saloon_code;
     private int[] img_women_list = {R.drawable.women_1, R.drawable.women_2, R.drawable.women_3, R.drawable.women_4, R.drawable.women_5};
     private int[] img_man_list = {R.drawable.man_1, R.drawable.man_2, R.drawable.man_3, R.drawable.man_4, R.drawable.man_5, R.drawable.man_6};
     private ProfileDialogLayout profileLayout;
-    private boolean isMan = false;
+    private boolean isMan = false,opened;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
@@ -59,14 +72,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         img_man.setOnClickListener(this);
         btn_register.setOnClickListener(this);
 
-        et_mobile.setText("0508768674");
-        et_password.setText("1234567890");
-        et_password_verification.setText("1234567890");
-        et_email.setText("testDemo@gmail.com");
-        et_email_verification.setText("testDemo@gmail.com");
-        et_name.setText("Test");
-        et_nick_name.setText("test");
-        et_saloon_code.setText("007");
+        linearLayout = findViewById(R.id.linearLayout);
     }
 
     @Override
@@ -80,12 +86,27 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
                 img_women.setImageResource(R.drawable.disable_women);
                 profileLayout = new ProfileDialogLayout(EmployeeRegisterActivity.this, img_man_list, img_employee_profile);
                 profileLayout.show();
+                profileLayout.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        img_women.setImageResource(R.drawable.enable_women);
+                    }
+                });
+                profileLayout.getWindow().setWindowAnimations(R.style.DialogAnimation);
                 break;
             case R.id.img_women:
                 isMan = false;
-                img_man.setImageResource(R.drawable.disable_man);
+                img_man.setImageResource(R.drawable.disable_male);
                 profileLayout = new ProfileDialogLayout(EmployeeRegisterActivity.this, img_women_list, img_employee_profile);
                 profileLayout.show();
+
+                profileLayout.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        img_man.setImageResource(R.drawable.enable_male);
+                    }
+                });
+                profileLayout.getWindow().setWindowAnimations(R.style.DialogAnimation);
                 break;
             case R.id.btn_register:
                 str_name = et_name.getText().toString();
@@ -103,6 +124,11 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
 
                 break;
         }
+    }
+
+
+    public void resendVerificationCode() {
+        btn_register.performClick();
     }
 
     public void setVisibilityProfileShow(int position) {
@@ -129,6 +155,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         img_close.setVisibility(android.view.View.GONE);
         img_man.setImageResource(R.drawable.enable_male);
         img_women.setImageResource(R.drawable.enable_women);
+        str_select_icon = null;
         profileLayout.dismiss();
     }
 
@@ -226,14 +253,12 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
             Utility.progressBarDialogShow(EmployeeRegisterActivity.this);
             ApiCall.verificationCode(EmployeeRegisterActivity.this, jsonObject);
         } else {
-            Utility.showDialog(EmployeeRegisterActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
+            Utility.showDialog(EmployeeRegisterActivity.this, Constants.KEY_ALERT, Constants.NO_INTERNET_CONNECTION);
         }
 
     }
 
     public void registerEmployee(String verificationCode) {
-
-        //verificationCode = "007";
 
         JsonObject jsonObject = new JsonObject();
 
@@ -251,7 +276,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
             Utility.progressBarDialogShow(EmployeeRegisterActivity.this);
             ApiCall.register(EmployeeRegisterActivity.this, jsonObject);
         } else {
-            Utility.showDialog(EmployeeRegisterActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
+            Utility.showDialog(EmployeeRegisterActivity.this, Constants.KEY_ALERT, Constants.NO_INTERNET_CONNECTION);
         }
 
     }

@@ -9,9 +9,10 @@ import com.charm.user.DialogVerificationCode;
 import com.charm.user.LoginActivity;
 import com.charm.user.MainActivity;
 import com.charm.user.PrefManager;
+import com.charm.user.R;
 import com.charm.user.Utility;
 import com.charm.user.responseModel.EmployeeLoginResponse;
-import com.charm.user.responseModel.ResetEmployeePasswordResponse;
+import com.charm.user.responseModel.ResetPasswordResponse;
 import com.charm.user.responseModel.VerificationCodeResponse;
 import com.charm.user.responseModel.EmployeeStatusResponse;
 import com.charm.user.responseModel.RegisterOwnerResponse;
@@ -43,20 +44,22 @@ public class ApiCall {
                     if (response.body() != null) {
                         Utility.printLog(TAG, "checkUser:onResponse:" + response.body());
                         if (response.body().getCode().equals("100")) {
-                            Utility.startActivity(activity, MainActivity.class, false);
+                            Utility.startActivity(activity, MainActivity.class, true);
                         } else {
-                            Utility.startActivity(activity, LoginActivity.class, false);
+                            Utility.startActivity(activity, LoginActivity.class, true);
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
-                Utility.progressBarDialogDismiss();
             }
 
             @Override
             public void onFailure(@NotNull Call<EmployeeStatusResponse> call, @NotNull Throwable t) {
-                Utility.progressBarDialogDismiss();
                 Utility.printLog(TAG, "checkUser:onFailure:Error:" + t.getMessage());
             }
         });
@@ -73,15 +76,19 @@ public class ApiCall {
                     if (response.body() != null) {
                         Utility.printLog(TAG, "verificationCode:onResponse:" + response.body());
                         if (response.body().getCode().equals("100")) {
-                            DialogVerificationCode code = new DialogVerificationCode(activity, response.body().getVerificationCode());
+                            DialogVerificationCode code = new DialogVerificationCode(activity, response.body().getVerificationCode(), R.style.DialogRounded);
                             code.show();
                             code.setCanceledOnTouchOutside(false);
                         } else {
-                            Utility.showDialog(activity, Constants.KEY_ALERT,response.body().getMessage());
+                            Utility.showDialog(activity, Constants.KEY_ALERT, response.body().getMessage());
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
                 Utility.progressBarDialogDismiss();
             }
@@ -108,11 +115,15 @@ public class ApiCall {
                             prefManager.setString(PrefManager.KEY_LOGIN_TOKEN, response.body().getLoginToken());
                             Utility.startActivity(activity, MainActivity.class, false);
                         } else {
-                            Utility.showDialog(activity, Constants.KEY_ERROR,response.body().getMessage());
+                            Utility.showDialog(activity, Constants.KEY_ERROR, response.body().getMessage());
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
 
                 Utility.progressBarDialogDismiss();
@@ -126,33 +137,37 @@ public class ApiCall {
         });
     }
 
-    public static void resetEmployeePassword(final Activity activity, JsonObject jsonObject) {
+    public static void resetPassword(final Activity activity, JsonObject jsonObject) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ResetEmployeePasswordResponse> verificationCodeCall = apiInterface.resetEmployeePassword(jsonObject);
-        verificationCodeCall.enqueue(new Callback<ResetEmployeePasswordResponse>() {
+        Call<ResetPasswordResponse> verificationCodeCall = apiInterface.resetPassword(jsonObject);
+        verificationCodeCall.enqueue(new Callback<ResetPasswordResponse>() {
             @Override
-            public void onResponse(@NotNull Call<ResetEmployeePasswordResponse> call, @NotNull Response<ResetEmployeePasswordResponse> response) {
+            public void onResponse(@NotNull Call<ResetPasswordResponse> call, @NotNull Response<ResetPasswordResponse> response) {
 
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        Utility.printLog(TAG, "resetEmployeePassword:onResponse:ResponseCode:" + response.body().getCode());
+                        Utility.printLog(TAG, "resetPassword:onResponse:ResponseCode:" + response.body().getCode());
                         if (response.body().getCode().equals("100")) {
                             ((LoginActivity) activity).forgotPasswordDialogDismiss();
                         } else {
-                            Utility.showDialog(activity, Constants.KEY_ALERT,response.body().getMessage());
+                            Utility.showDialog(activity, Constants.KEY_ALERT, response.body().getMessage());
                             ((LoginActivity) activity).forgotPasswordDialogDismiss();
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
                 Utility.progressBarDialogDismiss();
             }
 
             @Override
-            public void onFailure(@NotNull Call<ResetEmployeePasswordResponse> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<ResetPasswordResponse> call, @NotNull Throwable t) {
                 Utility.progressBarDialogDismiss();
-                Utility.printLog(TAG, "resetEmployeePassword:onFailure:Error:" + t.getMessage());
+                Utility.printLog(TAG, "resetPassword:onFailure:Error:" + t.getMessage());
             }
         });
     }
@@ -168,21 +183,25 @@ public class ApiCall {
                         Utility.printLog(TAG, "login:onResponse:" + response.body());
                         if (response.body().getCode().equals("100")) {
                             prefManager.setString(PrefManager.KEY_LOGIN_TOKEN, response.body().getLoginToken());
-                            if ((!prefManager.getString(PrefManager.KEY_LOGIN_TOKEN, "").isEmpty())){
+                            if ((!prefManager.getString(PrefManager.KEY_LOGIN_TOKEN, "").isEmpty())) {
                                 Utility.startActivity(activity, MainActivity.class, false);
-                            }else {
+                            } else {
                                 Utility.startActivity(activity, LoginActivity.class, false);
                             }
 
                         } else {
-                            Toast.makeText(activity,response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             if (response.body().getCode().equals("1014")) {
                                 Utility.startActivity(activity, LoginActivity.class, false);
                             }
                         }
                     }
                 } else {
-                    Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    if (response.code() == 502){
+                        Utility.showDialog(activity, "",activity.getResources().getString(R.string.internal_server_error));
+                    }else {
+                        Utility.showDialog(activity, Constants.KEY_ALERT,response.message());
+                    }
                 }
                 Utility.progressBarDialogDismiss();
             }

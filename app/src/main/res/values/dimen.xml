@@ -1,7 +1,7 @@
 <resources>
     <dimen name="space_text_tiny">@dimen/_15sdp</dimen>
-    <dimen name="icon_owner_width">@dimen/_40sdp</dimen>
-    <dimen name="icon_owner_height">@dimen/_40sdp</dimen>
+    <dimen name="icon_employee_width">@dimen/_40sdp</dimen>
+    <dimen name="icon_employee_height">@dimen/_50sdp</dimen>
     <dimen name="icon_profile_width">@dimen/_55sdp</dimen>
     <dimen name="icon_profile_height">@dimen/_55sdp</dimen>
     <dimen name="icon_dialog_img_width">@dimen/_45sdp</dimen>
