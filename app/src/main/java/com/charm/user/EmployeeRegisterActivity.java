@@ -42,11 +42,32 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
     private boolean isMan = false,opened;
     private LinearLayout linearLayout;
 
+    private SoftInputAssist softInputAssist;
+
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_register);
+        softInputAssist=new SoftInputAssist(EmployeeRegisterActivity.this);
         init();
+    }
+
+    @Override
+    protected void onResume() {
+        softInputAssist.onResume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        softInputAssist.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        softInputAssist.onDestroy();
+        super.onDestroy();
     }
 
     private void init() {
@@ -162,11 +183,11 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
     private boolean validation() {
 
         if (TextUtils.isEmpty(str_select_icon)) {
-            Utility.showDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, "Select image");
+            Utility.showDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), "Select image");
             return false;
         }
         if (TextUtils.isEmpty(str_name)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.NAME_MSG, et_name);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.NAME_MSG), et_name);
             dialog.validationDialog();
             return false;
         }
@@ -176,7 +197,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
             return false;
         }*/
         if (TextUtils.isEmpty(str_email)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.EMAIL_MSG, et_email);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.EMAIL_MSG), et_email);
             dialog.validationDialog();
             return false;
         }
@@ -186,22 +207,22 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
             return false;
         }*/
         if (!str_email.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.INVALID_MSG, Constants.EMAIL_VALID_MSG, et_email);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.INVALID_MSG), getResources().getString(R.string.EMAIL_VALID_MSG), et_email);
             dialog.validationDialog();
             return false;
         }
         if (TextUtils.isEmpty(str_email_verification)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.EMAIL_VERIFICATION_MSG, et_email_verification);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.EMAIL_VERIFICATION_MSG), et_email_verification);
             dialog.validationDialog();
             return false;
         }
         if (!str_email_verification.equals(str_email)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.MISMATCH_MSG, Constants.EMAIL_MATCH_MSG, et_email_verification);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.MISMATCH_MSG), getResources().getString(R.string.EMAIL_MATCH_MSG), et_email_verification);
             dialog.validationDialog();
             return false;
         }
         if (TextUtils.isEmpty(str_mobile)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.MOBILE_MSG, et_mobile);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.MOBILE_MSG), et_mobile);
             dialog.validationDialog();
             return false;
         }
@@ -211,32 +232,32 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
             return false;
         }*/
         if (TextUtils.isEmpty(str_nick_name)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.NICK_NAME_MSG, et_nick_name);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.NICK_NAME_MSG), et_nick_name);
             dialog.validationDialog();
             return false;
         }
         if (TextUtils.isEmpty(str_password)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.PASSWORD_MSG, et_password);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.PASSWORD_MSG), et_password);
             dialog.validationDialog();
             return false;
         }
         if (str_password.length() < 8) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.INVALID_MSG, Constants.PASSWORD_VALID_MSG, et_password);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.INVALID_MSG), getResources().getString(R.string.PASSWORD_VALID_MSG), et_password);
             dialog.validationDialog();
             return false;
         }
         if (TextUtils.isEmpty(str_password_verification)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.PASSWORD_VERIFICATION_MSG, et_password_verification);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.PASSWORD_VERIFICATION_MSG), et_password_verification);
             dialog.validationDialog();
             return false;
         }
         if (!str_password_verification.equals(str_password)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.MISMATCH_MSG, Constants.PASSWORD_MATCH_MSG, et_password_verification);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.MISMATCH_MSG), getResources().getString(R.string.PASSWORD_MATCH_MSG), et_password_verification);
             dialog.validationDialog();
             return false;
         }
         if (TextUtils.isEmpty(str_saloon_code)) {
-            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, Constants.EMPTY_MSG, Constants.SALOON_CODE_MSG, et_saloon_code);
+            ValidationDialog dialog = new ValidationDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.SALOON_CODE_MSG), et_saloon_code);
             dialog.validationDialog();
             return false;
         }
@@ -253,7 +274,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
             Utility.progressBarDialogShow(EmployeeRegisterActivity.this);
             ApiCall.verificationCode(EmployeeRegisterActivity.this, jsonObject);
         } else {
-            Utility.showDialog(EmployeeRegisterActivity.this, Constants.KEY_ALERT, Constants.NO_INTERNET_CONNECTION);
+            Utility.showDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.KEY_ALERT), getResources().getString(R.string.NO_INTERNET_CONNECTION));
         }
 
     }
@@ -276,7 +297,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
             Utility.progressBarDialogShow(EmployeeRegisterActivity.this);
             ApiCall.register(EmployeeRegisterActivity.this, jsonObject);
         } else {
-            Utility.showDialog(EmployeeRegisterActivity.this, Constants.KEY_ALERT, Constants.NO_INTERNET_CONNECTION);
+            Utility.showDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.KEY_ALERT), getResources().getString(R.string.NO_INTERNET_CONNECTION));
         }
 
     }

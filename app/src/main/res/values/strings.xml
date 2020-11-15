@@ -23,4 +23,24 @@
     <string name="resend_code">Resend code</string>
     <string name="internal_server_error">Internal server error please try again later</string>
 
+    <string name="EMPTY_MSG">Empty field!!</string>
+    <string name="INVALID_MSG">Invalid field!!</string>
+    <string name="NAME_MSG">Enter name</string>
+    <string name="EMAIL_MSG">Enter email</string>
+    <string name="EMAIL_VALID_MSG">Enter valid email</string>
+    <string name="EMAIL_VERIFICATION_MSG">Enter email for verification</string>
+    <string name="EMAIL_MATCH_MSG">Email and email for verification are not match</string>
+    <string name="MOBILE_MSG">Enter mobile number</string>
+    <string name="NICK_NAME_MSG">Enter nick name</string>
+    <string name="PASSWORD_MSG">Enter password</string>
+    <string name="PASSWORD_VALID_MSG">Password length should be greater then or equal 8</string>
+    <string name="MISMATCH_MSG">Mismatch field!!</string>
+    <string name="PASSWORD_VERIFICATION_MSG">Enter password for verification</string>
+    <string name="PASSWORD_MATCH_MSG">Password and password for verification are not match</string>
+    <string name="SALOON_CODE_MSG">Enter saloon code</string>
+
+    <string name="NO_INTERNET_CONNECTION">No internet connection</string>
+    <string name="KEY_ALERT">Alert</string>
+    <string name="KEY_ERROR">Error</string>
+
 </resources>

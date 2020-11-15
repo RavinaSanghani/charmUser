@@ -1,27 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">קסם</string>
-    <string name="title">כותרת</string>
-    <string name="name">שם</string>
-    <string name="mobile">נייד</string>
-    <string name="email">אימייל</string>
+
+    <string name="title">מה תרצו לעשות היום</string>
+
+    <string name="name">כינוי</string>
+
+    <string name="mobile">מספר טלפון נייד</string>
+
+    <string name="email">גתובת דואר אלקטרוני</string>
+
     <string name="password">סיסמה</string>
-    <string name="password_verification">אימות סיסמא</string>
-    <string name="login">התחברות</string>
-    <string name="register">להירשם</string>
-    <string name="forgot_password">שכחת את הסיסמא?</string>
-    <string name="create_account">צור חשבון</string>
-    <string name="icon">אייקון</string>
-    <string name="nick_name">כינוי</string>
+
+    <string name="password_verification">אימות סיסמה</string>
+
+    <string name="login">כניסה</string>
+
+    <string name="register">משתמש חדש</string>
+
+    <string name="forgot_password">שכחתי סיסמה</string>
+
+    <string name="create_account">הוספת חשבון</string>
+
+    <string name="icon">דמות</string>
+
+    <string name="nick_name">שם משתמש</string>
+
     <string name="saloon_code">קוד סלון</string>
-    <string name="email_verification">אימות אימייל</string>
-    <string name="reset_password">לאפס את הסיסמה</string>
-    <string name="phone_number">מספר טלפון</string>
-    <string name="ok">בסדר</string>
-    <string name="verification_code">קוד אימות</string>
-    <string name="enter_verification_code">הזן קוד אימות שהתקבל במספר הנייד שלך</string>
-    <string name="enter_code">להזין את הקוד</string>
-    <string name="resend_code">שלח קוד שוב</string>
-    <string name="internal_server_error">שגיאת שרת פנימית אנא נסה שוב מאוחר יותר</string>
+
+    <string name="email_verification">אימות כתובת דואר אלקטרוני</string>
+
+    <string name="reset_password">קבלת סיסמה חדשה</string>
+
+    <string name="phone_number">מספר טלפון נייד</string>
+
+    <string name="ok">מובן</string>
+
+    <string name="verification_code">שלחנו לך מסרון ובו קוד אימות</string>
+
+    <string name="enter_verification_code">יש להזין את קוד האימות שנשלח לנייד</string>
+
+    <string name="enter_code">יש להזין את קוד האימות שנשלח לנייד</string>
+
+    <string name="resend_code">שליחה נוספת</string>
+
+    <string name="internal_server_error">ייתכן והשירות אינו זמין כעת, נא לנסות שוב מאוחר יותר</string>
+
+    <string name="EMPTY_MSG">חוסר בנתונים!!</string>
+
+    <string name="INVALID_MSG">פורמט שגוי!!</string>
+
+    <string name="NAME_MSG">נא להזין כינוי למשתמש החדש</string>
+
+    <string name="EMAIL_MSG">נא להזין כתובת דואר אלקטרוני</string>
+
+    <string name="EMAIL_VALID_MSG">כתובת דואר אלקטרוני בפורמט לא תקין</string>
+
+    <string name="EMAIL_VERIFICATION_MSG">נא להזין את כתובת הדואר האלקטרוני שנית לצורך אימות</string>
+
+    <string name="EMAIL_MATCH_MSG">אימות כתובת דואר אלקטרוני נכשל, נא להזין את אותה הכתובת</string>
+
+    <string name="MOBILE_MSG">נא להזין מספר טלפון נייד</string>
+
+    <string name="NICK_NAME_MSG">נא להזין שם משתמש</string>
+
+    <string name="PASSWORD_MSG">נא להזין סיסמה</string>
+
+    <string name="PASSWORD_VALID_MSG">הסיסמה חייבת להכיל 8 תוים או יותר</string>
+
+    <string name="MISMATCH_MSG">אין התאמה בנתונים!!</string>
+
+    <string name="PASSWORD_VERIFICATION_MSG">נא להזין את הסיסמה שנית לצורך אימות</string>
+
+    <string name="PASSWORD_MATCH_MSG">אימות סיסמה נכשל, נא להזין את אותה הסיסמה</string>
+
+    <string name="SALOON_CODE_MSG">יש להזין את קוד הרישום שקיבלת מהמכון</string>
+
+    <string name="NO_INTERNET_CONNECTION">ייתכן והשירות אינו זמין או שישנן בעיות רשת, נא לנסות מאוחר יותר</string>
+
+    <string name="KEY_ALERT">התראה</string>
+
+    <string name="KEY_ERROR">ארעה שגיאה</string>
 
 </resources>

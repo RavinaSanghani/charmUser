@@ -49,7 +49,7 @@ public class DialogForgotPassword extends android.app.Dialog {
                         Utility.progressBarDialogShow(activity);
                         ApiCall.resetPassword(activity,jsonObject);
                     }else {
-                        Utility.showDialog(activity,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
+                        Utility.showDialog(activity,activity.getResources().getString(R.string.KEY_ALERT),getContext().getResources().getString(R.string.NO_INTERNET_CONNECTION));
                     }
                 }
             }
@@ -59,7 +59,7 @@ public class DialogForgotPassword extends android.app.Dialog {
     private boolean validation() {
 
         if (TextUtils.isEmpty(str_mobile)) {
-            ValidationDialog dialog = new ValidationDialog(getContext(), Constants.EMPTY_MSG, Constants.MOBILE_MSG, et_mobile);
+            ValidationDialog dialog = new ValidationDialog(getContext(), getContext().getResources().getString(R.string.EMPTY_MSG), getContext().getResources().getString(R.string.MOBILE_MSG), et_mobile);
             dialog.validationDialog();
             return false;
         }

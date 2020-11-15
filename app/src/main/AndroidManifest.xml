@@ -12,21 +12,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
+                android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
-        <activity android:name="com.charm.user.MainActivity"/>
+        <activity android:name="com.charm.user.MainActivity"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name="com.charm.user.DialogForgotPassword"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name="com.charm.user.LoginActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/Theme"/>
         <activity
             android:name="com.charm.user.EmployeeRegisterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.charm.user.SplashActivity">
+        <activity android:name="com.charm.user.SplashActivity"
+            android:theme="@style/AppTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

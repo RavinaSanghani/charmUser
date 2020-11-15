@@ -26,15 +26,36 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
     private EditText et_mobile, et_password;
     private String str_mobile, str_password,str_user_type;
 
+    private SoftInputAssist softInputAssist;
     private DialogForgotPassword forgotPasswordDialog;
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        softInputAssist=new SoftInputAssist(LoginActivity.this);
 
         init();
 
     }
+
+    @Override
+    protected void onResume() {
+        softInputAssist.onResume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        softInputAssist.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        softInputAssist.onDestroy();
+        super.onDestroy();
+    }
+
 
     private void init() {
 
@@ -93,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
             Utility.progressBarDialogShow(LoginActivity.this);
             ApiCall.login(LoginActivity.this,jsonObject);
         }else {
-            Utility.showDialog(LoginActivity.this,Constants.KEY_ALERT,Constants.NO_INTERNET_CONNECTION);
+            Utility.showDialog(LoginActivity.this,getResources().getString(R.string.KEY_ALERT),getResources().getString(R.string.NO_INTERNET_CONNECTION));
 
         }
 
@@ -123,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
     private boolean validation() {
 
         if (TextUtils.isEmpty(str_mobile)) {
-            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.EMPTY_MSG, Constants.MOBILE_MSG,et_mobile);
+            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.MOBILE_MSG),et_mobile);
             dialog.validationDialog();
             return false;
         }
@@ -133,12 +154,12 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
             return false;
         }*/
         if (TextUtils.isEmpty(str_password)) {
-            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.EMPTY_MSG, Constants.PASSWORD_MSG,et_password);
+            ValidationDialog dialog = new ValidationDialog(LoginActivity.this,getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.PASSWORD_MSG),et_password);
             dialog.validationDialog();
             return false;
         }
         if (str_password.length()< 8 ) {
-            ValidationDialog dialog = new ValidationDialog(LoginActivity.this, Constants.INVALID_MSG, Constants.PASSWORD_VALID_MSG,et_password);
+            ValidationDialog dialog = new ValidationDialog(LoginActivity.this,getResources().getString(R.string.INVALID_MSG), getResources().getString(R.string.PASSWORD_VALID_MSG),et_password);
             dialog.validationDialog();
             return false;
         }
