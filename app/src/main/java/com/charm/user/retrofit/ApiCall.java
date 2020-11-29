@@ -195,14 +195,14 @@ public class ApiCall {
                             if ((!prefManager.getString(PrefManager.KEY_LOGIN_TOKEN, "").isEmpty())) {
                                 Utility.startActivity(activity, MainActivity.class, false);
                             } else {
-                                Utility.startActivity(activity, LoginActivity.class, false);
+                                Utility.startActivity(activity, LoginActivity.class, true);
                             }
 
                         } else {
                             Utility.progressBarDialogDismiss();
-                            Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_LONG).show();
                             if (response.body().getCode().equals("1014")) {
-                                Utility.startActivity(activity, LoginActivity.class, false);
+                                Utility.startActivity(activity, LoginActivity.class, true);
                             }
                         }
                     }

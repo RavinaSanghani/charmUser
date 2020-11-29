@@ -79,6 +79,7 @@
                         android:paddingBottom="@dimen/space_text_tiny"
                         android:theme="@style/EditTextTheme"
                         android:gravity="start|center_vertical"
+                        android:textDirection="rtl"
                         android:importantForAutofill="no"
                         android:imeOptions="actionNext"
                         android:inputType="number"
@@ -107,11 +108,14 @@
                     tools:ignore="ContentDescription" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/img_lock"
                     android:layout_toRightOf="@+id/img_lock"
-                    android:gravity="start|center_vertical"
+                    android:textAlignment="viewStart"
+                    android:layout_gravity="start"
+                    android:gravity="start"
                     android:hint="@string/password"
                     app:hintTextColor="@color/themeTextSelectedTinyColor"
                     tools:targetApi="lollipop">
@@ -122,7 +126,9 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/space_text_tiny"
                         android:theme="@style/EditTextTheme"
-                        android:gravity="start|center_vertical"
+                        android:textDirection="rtl"
+                        android:textAlignment="viewStart"
+                        android:layout_gravity="start"
                         android:importantForAutofill="no"
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"

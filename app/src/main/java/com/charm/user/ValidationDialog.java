@@ -3,6 +3,7 @@ package com.charm.user;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.view.Gravity;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class ValidationDialog {
         title_text.setText(title);
         title_text.setPadding(10, 50, 10, 10);
         title_text.setGravity(Gravity.CENTER);
+        title_text.setTypeface(title_text.getTypeface(), Typeface.BOLD);
         title_text.setTextColor(android.graphics.Color.BLACK);
         title_text.setTextSize(23);
 
@@ -41,7 +43,7 @@ public class ValidationDialog {
         builder.setCustomTitle(title_text);
         builder.setMessage(msg);
         builder.setCancelable(false);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editText.requestFocus();

@@ -8,15 +8,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.util.Linkify;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.charm.user.retrofit.ApiCall;
 import com.charm.user.Constants;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonObject;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -28,15 +32,39 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
 
     private SoftInputAssist softInputAssist;
     private DialogForgotPassword forgotPasswordDialog;
+    private TextInputLayout txt_password;
+
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utility.setLocale(LoginActivity.this, "iw");
         setContentView(R.layout.activity_login);
         softInputAssist=new SoftInputAssist(LoginActivity.this);
 
         init();
 
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View v = getCurrentFocus();
+
+        if (v != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                v instanceof EditText &&
+                !v.getClass().getName().startsWith("android.webkit.")) {
+            int[] sourceCoordinates = new int[2];
+            v.getLocationOnScreen(sourceCoordinates);
+            float x = ev.getRawX() + v.getLeft() - sourceCoordinates[0];
+            float y = ev.getRawY() + v.getTop() - sourceCoordinates[1];
+
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom()) {
+                Utility.hideSoftKeyboard(LoginActivity.this);
+            }
+
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
 
     @Override
     protected void onResume() {
@@ -65,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
         Button btn_login = findViewById(R.id.btn_login);
         Button btn_register = findViewById(R.id.btn_register);
         Button btn_forgot_password = findViewById(R.id.btn_forgot_password);
+        txt_password = findViewById(R.id.txt_password);
 
         btn_login.setOnClickListener(this);
         btn_register.setOnClickListener(this);
@@ -72,6 +101,18 @@ public class LoginActivity extends AppCompatActivity implements android.view.Vie
 
         textColorChange(et_mobile);
         textColorChange(et_password);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+
+            txt_password.setTextDirection(View.TEXT_DIRECTION_RTL);
+            et_password.setTextDirection(View.TEXT_DIRECTION_RTL);
+
+            et_password.setInputType(InputType.TYPE_CLASS_TEXT |
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD |
+                    InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        }
+
     }
 
     @Override

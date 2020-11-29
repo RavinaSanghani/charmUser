@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setLocale("iw");
+        Utility.setLocale(SplashActivity.this, "iw");
         setContentView(R.layout.activity_splash);
 
         prefManager = new PrefManager(SplashActivity.this);
@@ -40,14 +40,6 @@ public class SplashActivity extends AppCompatActivity {
             Utility.showDialog(SplashActivity.this,getResources().getString(R.string.KEY_ALERT),getResources().getString(R.string.NO_INTERNET_CONNECTION));
         }
 
-    }
-
-    private void setLocale(String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        Configuration configuration = new Configuration();
-        configuration.locale = locale;
-        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
     }
 
 }

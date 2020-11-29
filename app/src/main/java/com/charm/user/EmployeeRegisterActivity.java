@@ -9,10 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.util.Linkify;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -25,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.charm.user.retrofit.ApiCall;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonObject;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -41,16 +44,39 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
     private ProfileDialogLayout profileLayout;
     private boolean isMan = false,opened;
     private LinearLayout linearLayout;
+    private TextInputLayout txt_password,txt_password_verification;
 
     private SoftInputAssist softInputAssist;
 
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utility.setLocale(EmployeeRegisterActivity.this, "iw");
         setContentView(R.layout.activity_employee_register);
         softInputAssist=new SoftInputAssist(EmployeeRegisterActivity.this);
         init();
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View v = getCurrentFocus();
+
+        if (v != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                v instanceof EditText &&
+                !v.getClass().getName().startsWith("android.webkit.")) {
+            int[] sourceCoordinates = new int[2];
+            v.getLocationOnScreen(sourceCoordinates);
+            float x = ev.getRawX() + v.getLeft() - sourceCoordinates[0];
+            float y = ev.getRawY() + v.getTop() - sourceCoordinates[1];
+
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom()) {
+                Utility.hideSoftKeyboard(EmployeeRegisterActivity.this);
+            }
+
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
 
     @Override
     protected void onResume() {
@@ -80,6 +106,8 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         et_password = findViewById(R.id.et_password);
         et_password_verification = findViewById(R.id.et_password_verification);
         et_saloon_code = findViewById(R.id.et_saloon_code);
+        txt_password = findViewById(R.id.txt_password);
+        txt_password_verification = findViewById(R.id.txt_password_verification);
 
         btn_register = findViewById(R.id.btn_register);
 
@@ -94,6 +122,24 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         btn_register.setOnClickListener(this);
 
         linearLayout = findViewById(R.id.linearLayout);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+
+            txt_password.setTextDirection(View.TEXT_DIRECTION_RTL);
+            txt_password_verification.setTextDirection(View.TEXT_DIRECTION_RTL);
+            et_password.setTextDirection(View.TEXT_DIRECTION_RTL);
+            et_password_verification.setTextDirection(View.TEXT_DIRECTION_RTL);
+
+            et_password.setInputType(InputType.TYPE_CLASS_TEXT |
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD |
+                    InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+            et_password_verification.setInputType(InputType.TYPE_CLASS_TEXT |
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD |
+                    InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        }
+
     }
 
     @Override
@@ -183,7 +229,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
     private boolean validation() {
 
         if (TextUtils.isEmpty(str_select_icon)) {
-            Utility.showDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), "Select image");
+            Utility.showDialog(EmployeeRegisterActivity.this, getResources().getString(R.string.EMPTY_MSG), getResources().getString(R.string.select_image));
             return false;
         }
         if (TextUtils.isEmpty(str_name)) {

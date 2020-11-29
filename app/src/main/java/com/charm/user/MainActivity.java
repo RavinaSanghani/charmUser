@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utility.setLocale(MainActivity.this, "iw");
         setContentView(R.layout.activity_main);
 
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Utility.printLog(TAG, "url:" + url);
                 if (url.contains("pg=blank")){
                     prefManager.setString(PrefManager.KEY_LOGIN_TOKEN,"");
-                    Utility.startActivity(MainActivity.this,LoginActivity.class,false);
+                    Utility.startActivity(MainActivity.this,LoginActivity.class,true);
                 }
                 return super.shouldOverrideUrlLoading(view, url);
             }

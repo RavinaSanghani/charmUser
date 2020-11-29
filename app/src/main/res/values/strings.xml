@@ -42,5 +42,5 @@
     <string name="NO_INTERNET_CONNECTION">No internet connection</string>
     <string name="KEY_ALERT">Alert</string>
     <string name="KEY_ERROR">Error</string>
-
+    <string name="select_image">Select image</string>
 </resources>

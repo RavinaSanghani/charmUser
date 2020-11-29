@@ -29,6 +29,7 @@ public class DialogForgotPassword extends android.app.Dialog {
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utility.setLocale(activity, "iw");
         setContentView(R.layout.dialog_forgot_password);
 
         et_mobile = findViewById(R.id.et_mobile);

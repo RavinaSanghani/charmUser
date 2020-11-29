@@ -24,8 +24,6 @@
             android:layout_below="@id/txt_code"
             android:background="@color/themeLoginBackground"
             android:layout_marginTop="@dimen/_10sdp"
-            android:paddingRight="@dimen/_20sdp"
-            android:paddingEnd="@dimen/_20sdp"
             android:gravity="start|top"
             android:text="@string/enter_verification_code"
             android:textColor="@color/themeLoginSepratorColor"
