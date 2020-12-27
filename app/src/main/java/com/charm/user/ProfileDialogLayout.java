@@ -57,9 +57,9 @@ public class ProfileDialogLayout extends Dialog {
 
 
         /*//Animation slide_down = AnimationUtils.loadAnimation(context, R.anim.slide_bottom);
-        Animation slide_up = AnimationUtils.loadAnimation(context, R.anim.slide_up);
+        Animation slide_down_top = AnimationUtils.loadAnimation(context, R.anim.slide_down_top);
         LinearLayout linearLayout=findViewById(R.id.linearLayout);
-        linearLayout.startAnimation(slide_up);
+        linearLayout.startAnimation(slide_down_top);
 */
     }
 

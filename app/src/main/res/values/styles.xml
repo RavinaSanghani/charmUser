@@ -15,7 +15,7 @@
     </style>
 
     <style name="DialogAnimation" >
-        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowEnterAnimation">@anim/slide_down_top</item>
         <item name="android:windowExitAnimation">@anim/slide_bottom</item>
         <item name="android:windowFullscreen">true</item>
     </style>

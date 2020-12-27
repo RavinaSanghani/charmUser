@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Utility.progressBarDialogShow(MainActivity.this);
                 Utility.printLog(TAG, "url:" + url);
                 if (url.contains("pg=blank")){
                     prefManager.setString(PrefManager.KEY_LOGIN_TOKEN,"");
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                Utility.progressBarDialogDismiss();
             }
         });
 

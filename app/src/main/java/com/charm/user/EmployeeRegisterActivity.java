@@ -109,6 +109,7 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
         txt_password = findViewById(R.id.txt_password);
         txt_password_verification = findViewById(R.id.txt_password_verification);
 
+
         btn_register = findViewById(R.id.btn_register);
 
         img_employee_profile = findViewById(R.id.img_employee_profile);
@@ -142,6 +143,18 @@ public class EmployeeRegisterActivity extends AppCompatActivity implements andro
 
     }
 
+    public void clearData(){
+        et_name.setText("");
+        et_email.setText("");
+        et_email_verification.setText("");
+        et_mobile.setText("");
+        et_nick_name.setText("");
+        et_password.setText("");
+        et_password_verification.setText("");
+        et_saloon_code.setText("");
+
+
+    }
     @Override
     public void onClick(android.view.View v) {
         switch (v.getId()) {

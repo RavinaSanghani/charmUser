@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.charm.user.Constants;
 import com.charm.user.DialogVerificationCode;
+import com.charm.user.EmployeeRegisterActivity;
 import com.charm.user.LoginActivity;
 import com.charm.user.MainActivity;
 import com.charm.user.PrefManager;
@@ -116,6 +117,7 @@ public class ApiCall {
                         if (response.body().getCode().equals("100")) {
                             Utility.progressBarDialogDismiss();
                             prefManager.setString(PrefManager.KEY_LOGIN_TOKEN, response.body().getLoginToken());
+                            ((EmployeeRegisterActivity) activity).clearData();
                             Utility.startActivity(activity, MainActivity.class, false);
                         } else {
                             Utility.progressBarDialogDismiss();
@@ -200,6 +202,7 @@ public class ApiCall {
 
                         } else {
                             Utility.progressBarDialogDismiss();
+                            Utility.printLog(TAG, "login:onFailure:Message:" + response.body().getMessage());
                             Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_LONG).show();
                             if (response.body().getCode().equals("1014")) {
                                 Utility.startActivity(activity, LoginActivity.class, true);
